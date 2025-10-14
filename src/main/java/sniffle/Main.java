@@ -1,4 +1,4 @@
-package org.sniffle;
+package sniffle;
 
 class Main {
     public static void main(String[] args) {

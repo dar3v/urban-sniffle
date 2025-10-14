@@ -1,4 +1,4 @@
-package org.sniffle;
+package sniffle;
 
 public class User {
     // TODO code here
