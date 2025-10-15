@@ -29,6 +29,10 @@ public class ClientHandler implements Runnable {
         return clientName;
     }
 
+    public void sendMessage(String msg) {
+        writer.println(msg);
+    }
+
     @Override
     public void run() {
         try {
