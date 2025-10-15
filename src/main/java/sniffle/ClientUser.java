@@ -34,7 +34,7 @@ public class ClientUser extends User {
     @Override
     public void login() {
         // TODO code here
-        System.out.println("Client " + username + "is ready to connect")
+        System.out.println("Client " + username + "is ready to connect");
     }
 
     public void connectToServer() {
