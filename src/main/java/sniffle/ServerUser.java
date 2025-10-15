@@ -17,6 +17,9 @@ public class ServerUser extends User {
 
     private void setPort(int port) {
         // TODO some excepton handling perhaps..
+        if (port <= 1024 || port > 65535) {
+            throw new IllegalArgumentException("Invalid port");
+        }
         this.port = port;
     }
 
