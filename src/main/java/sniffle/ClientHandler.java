@@ -41,7 +41,6 @@ public class ClientHandler implements Runnable {
 
             clientName = reader.readLine();
             System.out.println("Connected: " + clientName);
-            /* writer.println("You Can Now Chat:"); */
 
             server.broadcast("joined the chat!", this);
 

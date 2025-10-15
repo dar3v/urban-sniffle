@@ -42,15 +42,14 @@ public class ClientUser extends User {
 
             writer.println(username);
             System.out.println("You can now chat:");
-            System.out.print("Me: "); // initial prompt
 
             new Thread(() -> {
                 try {
+                    System.out.print("[Me]: ");
                     String msg;
                     while ((msg = reader.readLine()) != null) {
-                        System.out.print("\r" + " ".repeat(100) + "\r"); // clear current line
-                        System.out.println(msg);
-                        System.out.print("Me: ");
+                        System.out.println("\r" + msg);
+                        System.out.print("[Me]: ");
                     }
                 } catch (IOException e) {
                     System.out.println("Disconnected.");
@@ -66,7 +65,7 @@ public class ClientUser extends User {
 
                     writer.println(line);
                 }
-                System.out.print("Me: ");
+                System.out.print("[Me]: ");
             }
 
         } catch (Exception e) {

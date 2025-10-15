@@ -7,7 +7,7 @@ public class UrbanSniffle {
         try {
             BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
 
-            System.out.print("Run as (s)erver or (c)lient? ");
+            System.out.print("Run as [s]erver or [c]lient? ");
             String choice = console.readLine().trim().toLowerCase();
 
             if (choice.equals("s")) {
