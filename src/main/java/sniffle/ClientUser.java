@@ -42,7 +42,7 @@ public class ClientUser extends User {
             socket = new Socket(serverIP, port);
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             writer = new PrintWriter(socket.getOutputStream(), true);
-            System.out.println("✅ Connected to server.");
+            System.out.println("Connected to server.");
 
             writer.println(username);
 
@@ -63,8 +63,13 @@ public class ClientUser extends User {
             // Read console & send
             BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
             String line;
+            System.out.print("Me: ");
             while ((line = console.readLine()) != null) {
-                writer.println(line);
+                if (!line.trim().isEmpty()) {
+
+                    writer.println(line);
+                }
+                System.out.print("Me: ");
             }
 
 
