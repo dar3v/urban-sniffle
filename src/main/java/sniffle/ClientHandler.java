@@ -39,9 +39,10 @@ public class ClientHandler implements Runnable {
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             writer = new PrintWriter(socket.getOutputStream(), true);
 
-            writer.println("Enter your name:");
+
             clientName = reader.readLine();
-            System.out.println(" Connected: " + clientName);
+            System.out.println("Connected: " + clientName);
+            writer.println("You Can Now Chat:");
 
             server.broadcast(clientName + " joined the chat!", this);
 
