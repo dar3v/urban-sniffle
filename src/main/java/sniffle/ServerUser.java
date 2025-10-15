@@ -40,14 +40,13 @@ public class ServerUser extends User {
                 Socket clientSocket = serverSocket.accept();
                 ClientHandler handler = new ClientHandler(this, clientSocket);
                 clients.add(handler);
-                new Thread(handler);
+                new Thread(handler).start();
             }
             } catch (IOException e)
             {
                 System.err.println("Server error: " + e.getMessage());
             }
         }
-
 
     public synchronized void broadcast(String plain, ClientHandler sender) {
         for (ClientHandler client : clients) {
