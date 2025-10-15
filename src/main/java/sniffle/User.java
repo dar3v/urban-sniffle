@@ -11,9 +11,10 @@ public abstract class User {
     protected BufferedReader reader;
     protected PrintWriter writer;
 
-    protected PublicKey publicKey;
+  /*  protected PublicKey publicKey;
     protected PrivateKey privateKey;
-    protected PublicKey serverPublicKey;
+    protected PublicKey serverPublicKey;*/
+    //removed keys for the encryption
 
     // Constructor
     public User(String username) {

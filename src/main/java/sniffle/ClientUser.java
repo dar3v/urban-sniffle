@@ -23,9 +23,42 @@ public class ClientUser extends User {
     @Override
     public void login() {
         // TODO code here
+        System.out.println("Client " + username + "is ready to connect")
     }
 
     public void connectToServer() {
-        // TODO code here
+        try {
+            socket = new Socket(serverIP, port);
+            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            writer = new PrintWriter(socket.getOutputStream(), true);
+            System.out.println("✅ Connected to server.");
+
+            writer.println(username);
+
+
+            // Thread to receive plain messages (no more decryption)
+            new Thread(() -> {
+                try {
+                    String msg;
+                    while ((msg = reader.readLine()) != null) {
+                        System.out.println(msg);
+                    }
+                } catch (IOException e) {
+                    System.out.println("Disconnected.");
+                }
+            }).start();
+
+
+            // Read console & send
+            BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+            String line;
+            while ((line = console.readLine()) != null) {
+                writer.println(line);
+            }
+
+
+        } catch (Exception e) {
+            System.err.println("Client error: " + e.getMessage());
+        }
     }
 }
