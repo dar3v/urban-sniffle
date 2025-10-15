@@ -9,7 +9,7 @@ public class ClientHandler implements Runnable {
     private BufferedReader reader;
     private PrintWriter writer;
     private String clientName;
-    
+
     public ClientHandler(ServerUser server, Socket socket) {
         setServer(server);
         setSocket(socket);
@@ -39,7 +39,6 @@ public class ClientHandler implements Runnable {
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             writer = new PrintWriter(socket.getOutputStream(), true);
 
-
             clientName = reader.readLine();
             System.out.println("Connected: " + clientName);
             writer.println("You Can Now Chat:");
@@ -48,19 +47,22 @@ public class ClientHandler implements Runnable {
 
             String incoming;
             while ((incoming = reader.readLine()) != null) {
-                try {
-                    System.out.println("[" + clientName + "]: " + incoming);
-                    server.broadcast(incoming, this);
-                } catch (Exception e) {
-                    System.err.println("Decrypt fail from " + clientName + ": " + e.getMessage());
-                }
+                System.out.println("[" + clientName + "]: " + incoming);
+                server.broadcast(incoming, this);
             }
         } catch (Exception e) {
             System.out.println("ClientHandler error: " + e.getMessage());
         } finally {
             server.removeClient(this);
             server.broadcast("📢 " + clientName + " left.", this);
-            try { socket.close(); } catch (IOException ignored) {}
+            try {
+                socket.close();
+            } catch (IOException ignored) {
+            }
         }
+    }
+
+    private void broadcastOnEnter() {
+
     }
 }

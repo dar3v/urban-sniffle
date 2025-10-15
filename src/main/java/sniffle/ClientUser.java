@@ -6,8 +6,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-
-
 public class ClientUser extends User {
     private String serverIP;
     private int port;
@@ -24,7 +22,6 @@ public class ClientUser extends User {
     }
 
     private void setPort(int port) {
-        // TODO some excepton handling perhaps..
         if (port <= 1024 || port > 65535) {
             throw new IllegalArgumentException("Invalid port");
         }
@@ -33,7 +30,6 @@ public class ClientUser extends User {
 
     @Override
     public void login() {
-        // TODO code here
         System.out.println("Client " + username + "is ready to connect");
     }
 
@@ -46,8 +42,6 @@ public class ClientUser extends User {
 
             writer.println(username);
 
-
-            // Thread to receive plain messages (no more decryption)
             new Thread(() -> {
                 try {
                     String msg;
@@ -58,7 +52,6 @@ public class ClientUser extends User {
                     System.out.println("Disconnected.");
                 }
             }).start();
-
 
             // Read console & send
             BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
@@ -71,7 +64,6 @@ public class ClientUser extends User {
                 }
                 System.out.print("Me: ");
             }
-
 
         } catch (Exception e) {
             System.err.println("Client error: " + e.getMessage());

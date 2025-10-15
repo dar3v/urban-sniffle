@@ -16,7 +16,6 @@ public class ServerUser extends User {
     }
 
     private void setPort(int port) {
-        // TODO some excepton handling perhaps..
         if (port <= 1024 || port > 65535) {
             throw new IllegalArgumentException("Invalid port");
         }
@@ -25,13 +24,10 @@ public class ServerUser extends User {
 
     @Override
     public void login() {
-        // TODO code here
         System.out.println("Server " + username + " ready on port " + port);
-
     }
 
     public void startServer() {
-        // TODO code here
         try {
             serverSocket = new ServerSocket(port);
             System.out.println("Server Started: Listening on port: " + port);
@@ -42,11 +38,10 @@ public class ServerUser extends User {
                 clients.add(handler);
                 new Thread(handler).start();
             }
-            } catch (IOException e)
-            {
-                System.err.println("Server error: " + e.getMessage());
-            }
+        } catch (IOException e) {
+            System.err.println("Server error: " + e.getMessage());
         }
+    }
 
     public synchronized void broadcast(String plain, ClientHandler sender) {
         for (ClientHandler client : clients) {
@@ -56,8 +51,7 @@ public class ServerUser extends User {
         }
     }
 
-
-    public synchronized void removeClient(ClientHandler c) { clients.remove(c); }
-
-    //removed getPublicKey and getPrivateKey
+    public synchronized void removeClient(ClientHandler c) {
+        clients.remove(c);
+    }
 }
