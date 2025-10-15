@@ -47,7 +47,7 @@ public class ServerUser extends User {
                 System.err.println("Server error: " + e.getMessage());
             }
         }
-    }
+
 
     public synchronized void broadcast(String plain, ClientHandler sender) {
         for (ClientHandler client : clients) {
