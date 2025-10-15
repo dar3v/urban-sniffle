@@ -12,7 +12,7 @@ public class ServerUser extends User {
 
     public ServerUser(String username, int port) {
         super(username);
-        this.port = port;
+        setPort(port);
     }
 
     private void setPort(int port) {
