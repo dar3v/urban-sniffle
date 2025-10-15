@@ -30,7 +30,7 @@ public class ClientUser extends User {
 
     @Override
     public void login() {
-        System.out.println("Client " + username + "is ready to connect");
+        System.out.println("Client " + username + " is ready to connect");
     }
 
     public void connectToServer() {
@@ -41,12 +41,16 @@ public class ClientUser extends User {
             System.out.println("Connected to server.");
 
             writer.println(username);
+            System.out.println("You can now chat:");
+            System.out.print("Me: "); // initial prompt
 
             new Thread(() -> {
                 try {
                     String msg;
                     while ((msg = reader.readLine()) != null) {
+                        System.out.print("\r" + " ".repeat(100) + "\r"); // clear current line
                         System.out.println(msg);
+                        System.out.print("Me: ");
                     }
                 } catch (IOException e) {
                     System.out.println("Disconnected.");
@@ -56,7 +60,7 @@ public class ClientUser extends User {
             // Read console & send
             BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
             String line;
-            System.out.print("Me: ");
+
             while ((line = console.readLine()) != null) {
                 if (!line.trim().isEmpty()) {
 
